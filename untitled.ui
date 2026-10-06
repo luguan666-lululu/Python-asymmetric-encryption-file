@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>680</width>
+    <height>560</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>500</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>后量子加密程序 v1.1</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_main">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTabBar::tab {
+    background: transparent;
+    border: 1px solid palette(mid);
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 6px 16px;
+    font-size: 12pt;
+}
+QTabBar::tab:selected {
+    background: #E65100;
+    color: #FFFFFF;
+    font-weight: 700;
+    border: 2px solid #E65100;
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+QTabBar::tab:hover:!selected {
+    background: palette(light);
+}</string>
+     </property>
+
+     <!-- ========== 页1：程序说明 ========== -->
+     <widget class="QWidget" name="tab_manual">
+      <attribute name="title">
+       <string>程序说明</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_manual">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_manual">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_manual">
+          <layout class="QVBoxLayout" name="verticalLayout_scroll_manual">
+           <item>
+            <widget class="QLabel" name="label_manual">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:15pt;font-weight:700;&quot;&gt;后量子加密程序 v1.1 — 使用说明&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;这是离线文件与消息加密工具。内容在本机处理，密文由你自行传输。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;font-weight:700;&quot;&gt;第一步：生成密钥&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;输入通信对方在你这里的名字。例如 Alice 要与 Bob 通信，输入 Bob，生成 Bob——私钥和 Bob——公钥。刚生成时两个文件都属于 Alice。Bob 在自己的电脑输入 Alice，生成自己的密钥。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;生成时可设置私钥密码。若在密码输入框取消，当前程序会提示并保存未加密私钥；忘记已设置的密码没有恢复机制。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;font-weight:700;&quot;&gt;第二步：交换公钥&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;先备份刚生成的自己的公钥，再通过可信渠道把它发给对方。Alice 将收到的 Bob 公钥保存为 Bob——公钥；Bob 将收到的 Alice 公钥保存为 Alice——公钥，替换同名公钥文件。双方始终保留自己的私钥，不发送私钥。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;&lt;b&gt;关键规则：对方名称——私钥属于自己，对方名称——公钥属于对方。&lt;/b&gt; 所有密钥和密文放在当前工作目录。首次交换及以后换钥都应核验来源。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;font-weight:700;&quot;&gt;第三步：加密文件或消息&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;在文件加密页选择文件，或在消息加密页输入文字；输入对面名称后加密。输出固定为文件——密文，完成后再发送。确认覆盖后不保证失败时仍能找回旧密文。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;font-weight:700;&quot;&gt;第四步：解密&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;收到密文后命名为文件——密文，放到当前工作目录；在解密页输入发送方名称。程序自动识别文件或消息：文件恢复名称输出，消息显示在页面中。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;font-weight:700;&quot;&gt;顺序与安全边界&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;文件和消息共用顺序检查，异常时可以选择继续。这是提醒，不严格阻止重放。崩溃、断电、读写失败和恢复旧备份可能导致顺序混乱；私钥、公钥文件会随使用更新。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;本程序无前向保密，不保证隐藏精确长度或防止解锁后的内存读取。未经独立安全审计，详细安全边界以项目说明为准。大文件处理时界面可能暂时无响应。&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+
+     <!-- ========== 页2：生成密钥 ========== -->
+     <widget class="QWidget" name="tab_keygen">
+      <attribute name="title">
+       <string>生成密钥</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_keygen">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_keygen">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_keygen">
+          <layout class="QVBoxLayout" name="verticalLayout_scroll_keygen">
+           <item>
+            <widget class="QLabel" name="label_keygen_title">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:14pt;font-weight:700;&quot;&gt;生成密钥对&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;输入通信对方在你这里的名字（例如 Bob），生成 Bob——私钥与 Bob——公钥。刚生成时两个文件都属于你。先备份并交换自己的公钥，再把收到的对方公钥保存为 Bob——公钥；本机 Bob——私钥仍属于你，不要发送。&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_keygen_edit">
+             <item>
+              <spacer name="horizontalSpacer_keygen_el">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit">
+               <property name="minimumSize">
+                <size>
+                 <width>350</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>350</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="placeholderText">
+                <string>密钥名称</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_keygen_er">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_keygen_btn">
+             <item>
+              <spacer name="horizontalSpacer_keygen_l">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>生成密钥</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_keygen_r">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_keygen_hint">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;&lt;b&gt;提示：&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 密钥生成时间取决于电脑性能，请等待完成。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 可为私钥设置密码；之后加密和解密使用该私钥时需输入密码。密码区分大小写，支持中文和空格。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 任一密码输入框取消后，程序会提示并保存未加密私钥；取消不等于取消生成。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 忘记密码没有恢复机制；即使设置密码，也要保护好私钥文件。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 目录已存在同名密钥时会拒绝生成。&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: #FFF7E6; border: 2px solid #FFA000; border-radius: 6px; color: #7A5C00; font-size: 12pt; padding: 10px;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_scroll_keygen">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>10</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+
+     <!-- ========== 页3：加密 ========== -->
+     <widget class="QWidget" name="tab_encrypt">
+      <attribute name="title">
+       <string>文件加密</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_encrypt">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_encrypt">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_encrypt">
+          <layout class="QVBoxLayout" name="verticalLayout_scroll_encrypt">
+           <item>
+            <widget class="QLabel" name="label_encrypt_1">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;第一步：选择要加密的文件&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_encrypt_btn2">
+             <item>
+              <spacer name="horizontalSpacer_encrypt_l2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_2">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>选择文件</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_encrypt_r2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_encrypt_2">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;&lt;b&gt;第二步：输入对面名称&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;例如 Alice 给 Bob 发送文件，输入 Bob。程序读取 Bob——公钥（Bob 的公钥）及 Bob——私钥（Alice 自己的私钥）。私钥不需要发送给 Bob。&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_encrypt_edit">
+             <item>
+              <spacer name="horizontalSpacer_encrypt_el">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_2">
+               <property name="minimumSize">
+                <size>
+                 <width>350</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>350</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="placeholderText">
+                <string>对面名称</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_encrypt_er">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_encrypt_btn3">
+             <item>
+              <spacer name="horizontalSpacer_encrypt_l3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_3">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>加密</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_encrypt_r3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_encrypt_hint">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;&lt;b&gt;提示：&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 当前工作目录需有对面名称——公钥和对面名称——私钥：公钥属于对方，私钥属于自己。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 私钥有密码时会弹出密码框。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 输出固定为文件——密文，已有同名文件会询问覆盖；确认后旧密文可能被覆盖，失败时不保证能够恢复。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 文件和消息共用发送顺序。大文件处理时界面可能暂时无响应，请等待完成后再传输密文。&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: #FFF7E6; border: 2px solid #FFA000; border-radius: 6px; color: #7A5C00; font-size: 12pt; padding: 10px;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_scroll_encrypt">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>10</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+
+     <!-- ========== 消息加密：独立加密页面 ========== -->
+     <widget class="QWidget" name="tab_message">
+      <attribute name="title"><string>消息加密</string></attribute>
+      <property name="font"><font><pointsize>14</pointsize></font></property>
+      <layout class="QVBoxLayout" name="verticalLayout_message">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_message">
+         <property name="widgetResizable"><bool>true</bool></property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_message">
+          <layout class="QVBoxLayout" name="verticalLayout_scroll_message">
+           <item>
+            <widget class="QLabel" name="label_message_hint">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;加密消息&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot; font-size:13pt;&quot;&gt;输入对面名称和消息，点击“加密消息”。密文保存为当前运行目录下的 &lt;b&gt;文件——密文&lt;/b&gt;，可直接发送给对方。&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap"><bool>true</bool></property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_message_edit">
+             <item><spacer name="horizontalSpacer_message_el"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property></spacer></item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_message_name">
+               <property name="minimumSize"><size><width>350</width><height>50</height></size></property>
+               <property name="maximumSize"><size><width>350</width><height>50</height></size></property>
+               <property name="font"><font><pointsize>14</pointsize></font></property>
+               <property name="alignment"><set>Qt::AlignCenter</set></property>
+               <property name="placeholderText"><string>对面名称</string></property>
+              </widget>
+             </item>
+             <item><spacer name="horizontalSpacer_message_er"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property></spacer></item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_message_plain">
+             <property name="font"><font><pointsize>14</pointsize><bold>true</bold></font></property>
+             <property name="text"><string>输入要加密的消息</string></property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPlainTextEdit" name="plainTextEdit_message_plain">
+             <property name="minimumSize"><size><width>0</width><height>150</height></size></property>
+             <property name="font"><font><pointsize>14</pointsize></font></property>
+             <property name="placeholderText"><string>输入消息，支持中文、换行和表情</string></property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_message_buttons">
+             <item><spacer name="horizontalSpacer_message_bl"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property></spacer></item>
+             <item>
+              <widget class="QPushButton" name="pushButton_message_encrypt">
+               <property name="minimumSize"><size><width>120</width><height>50</height></size></property>
+               <property name="maximumSize"><size><width>120</width><height>50</height></size></property>
+               <property name="font"><font><pointsize>14</pointsize></font></property>
+               <property name="text"><string>加密消息</string></property>
+              </widget>
+             </item>
+             <item><spacer name="horizontalSpacer_message_br"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property></spacer></item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_message_cipher">
+             <property name="font"><font><pointsize>12</pointsize></font></property>
+             <property name="styleSheet"><string notr="true">background-color: #FFF7E6; border: 2px solid #FFA000; border-radius: 6px; color: #7A5C00; font-size: 12pt; padding: 10px;</string></property>
+             <property name="text"><string>提示：
+· 当前工作目录需有“对面名称——公钥”（对方的）和“对面名称——私钥”（自己的）。
+· 输出固定为“文件——密文”；确认覆盖后，失败时不保证能恢复旧密文。
+· 文件和消息统一在“解密”页处理，并共用顺序检查。</string></property>
+             <property name="wordWrap"><bool>true</bool></property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+
+     <!-- ========== 页4：解密 ========== -->
+     <widget class="QWidget" name="tab_decrypt">
+      <attribute name="title">
+       <string>解密</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_decrypt">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_decrypt">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_decrypt">
+          <layout class="QVBoxLayout" name="verticalLayout_scroll_decrypt">
+           <item>
+            <widget class="QLabel" name="label_decrypt_1">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;&lt;b&gt;解密文件或消息&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:13pt;&quot;&gt;将收到的密文命名为文件——密文，放入当前工作目录，输入发送方在你这里的名称。程序自动识别文件或消息；使用自己的私钥解封装、发送方公钥验签。消息结果显示在本页。&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_decrypt_edit">
+             <item>
+              <spacer name="horizontalSpacer_decrypt_el">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_3">
+               <property name="minimumSize">
+                <size>
+                 <width>350</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>350</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="placeholderText">
+                <string>对面名称</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_decrypt_er">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_decrypt_btn">
+             <item>
+              <spacer name="horizontalSpacer_decrypt_l">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_4">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>解密</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_decrypt_r">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_message_result">
+             <property name="font"><font><pointsize>14</pointsize></font></property>
+             <property name="title"><string>消息解密结果</string></property>
+             <layout class="QVBoxLayout" name="verticalLayout_message_result">
+              <item>
+               <widget class="QPlainTextEdit" name="plainTextEdit_message_result">
+                <property name="minimumSize"><size><width>0</width><height>150</height></size></property>
+                <property name="font"><font><pointsize>14</pointsize></font></property>
+                <property name="readOnly"><bool>true</bool></property>
+                <property name="placeholderText"><string>消息解密成功后显示在这里，可选择并复制</string></property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_decrypt_hint">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;&lt;b&gt;提示：&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 当前工作目录需有对面名称——公钥（发送方公钥）和对面名称——私钥（自己的私钥）。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 私钥有密码时会弹出密码框。文件恢复原始名称输出；同名目标按提示处理。消息显示在本页。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 顺序不一致时可以选择继续；这不能证明密文未被重放。崩溃、断电、读写失败或恢复旧备份可能导致顺序检查混乱。&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:12pt;&quot;&gt;· 选择继续仍需通过密文认证；认证不通过或密钥不匹配时，程序会停止并提示。&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: #FFF7E6; border: 2px solid #FFA000; border-radius: 6px; color: #7A5C00; font-size: 12pt; padding: 10px;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_scroll_decrypt">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>10</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+
+     <!-- ========== 关于 ========== -->
+     <widget class="QWidget" name="tab_about">
+      <attribute name="title">
+       <string>关于</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_about">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_about">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_about">
+          <layout class="QVBoxLayout" name="verticalLayout_scroll_about">
+           <item>
+            <widget class="QLabel" name="label_about">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:14pt;&quot;&gt;&lt;b&gt;版本&lt;/b&gt;：v1.1&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:14pt;&quot;&gt;&lt;b&gt;密钥封装&lt;/b&gt;：ML-KEM-1024 + Classic McEliece-8192128，各两次&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:14pt;&quot;&gt;&lt;b&gt;对称加密&lt;/b&gt;：AES-256-GCM + ChaCha20-Poly1305&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:14pt;&quot;&gt;&lt;b&gt;会话认证&lt;/b&gt;：ML-DSA-87 + SLH-DSA-SHAKE-256f，认证共享秘密摘要&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:14pt;&quot;&gt;&lt;b&gt;私钥保护&lt;/b&gt;：可选 Argon2id（512 MiB、迭代数 4、lanes 4），ChaCha20-Poly1305 + Cobblestone256&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:14pt;&quot;&gt;&lt;b&gt;功能&lt;/b&gt;：文件、文本消息、密文类型识别、顺序异常提示&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:14pt;&quot;&gt;&lt;b&gt;源码环境&lt;/b&gt;：本轮验证于 Windows x64 / Python 3.14.7&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size:14pt;&quot;&gt;后量子算法不等于完整协议已获安全认证。本程序无前向保密，顺序检查不严格防重放；未经过独立安全审计，详细安全边界以项目说明为准。&lt;/span&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_scroll_about">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>10</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
