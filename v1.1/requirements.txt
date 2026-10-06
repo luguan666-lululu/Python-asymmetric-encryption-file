@@ -1,0 +1,5 @@
+# Runtime versions used in the Windows x64 / Python 3.14.7 assessment.
+cryptography==50.0.2
+pqcrypto==1.0.0
+PyQt6==6.11.0
+pathvalidate==3.3.1
