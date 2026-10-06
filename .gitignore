@@ -1,0 +1,26 @@
+# User keys, mutable communication state and ciphertext.
+*——私钥
+*——公钥
+*——密文
+/test
+temp*.tmp
+*.tmp
+.env
+.env.*
+
+# Python environments and build output.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+build/
+dist/
+*.exe
+*.zip
+*.whl
+*.crate
+*.tar.gz
+
+# Local dated research / benchmark directories and publication staging.
+/*_20??????/
+/发布准备_v1.1/
